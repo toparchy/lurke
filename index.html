@@ -1,316 +1,536 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Lurke — See Who Unfollowed You on Instagram</title>
-<meta name="description" content="Lurke shows you exactly who unfollowed you on Instagram — names, dates, history. For iPhone.">
-<style>
-  :root {
-    --bg: #0D0B0A;
-    --card: #1C1917;
-    --card-2: #262220;
-    --text: #FFFFFF;
-    --text-dim: rgba(245,238,235,0.62);
-    --coral: #FF6F52;          /* Lurke warm coral */
-    --coral-deep: #E8503A;
-    --coral-soft: rgba(255,111,82,0.14);
-    --separator: rgba(120,110,105,0.5);
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  html { -webkit-text-size-adjust: 100%; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.45;
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
-  }
-  .page {
-    width: 100%;
-    max-width: 430px;
-    padding: max(20px, env(safe-area-inset-top)) 20px 40px;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>Get Up To $500 Abercrombie Discount Code</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-  /* ---------- HERO ---------- */
-  .hero { text-align: center; padding: 28px 0 8px; }
-  .app-badge {
-    width: 74px; height: 74px;
-    margin: 0 auto 18px;
-    border-radius: 18px;
-    background: linear-gradient(145deg, var(--coral), var(--coral-deep));
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 8px 28px rgba(255,111,82,0.35);
-  }
-  .app-badge svg { width: 40px; height: 40px; }
-  .app-name {
-    font-size: 13px; font-weight: 700; letter-spacing: 3px;
-    color: var(--coral); text-transform: uppercase; margin-bottom: 10px;
-  }
-  h1 {
-    font-size: 34px;
-    font-weight: 800;
-    letter-spacing: -0.6px;
-    line-height: 1.12;
-  }
-  h1 .accent { color: var(--coral); }
-  .sub {
-    margin-top: 10px;
-    font-size: 17px;
-    color: var(--text-dim);
-    font-weight: 500;
-  }
+    :root {
+      --abercrombie-navy: #1a2234;
+      --abercrombie-gold: #c9a962;
+      --abercrombie-light: #eef1f5;
+      --white: #ffffff;
+      --gray-100: #f3f4f6;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-900: #111827;
+      --safe-top: env(safe-area-inset-top);
+      --safe-bottom: env(safe-area-inset-bottom);
+    }
 
-  /* ---------- CTA ---------- */
-  .cta {
-    display: block;
-    text-align: center;
-    text-decoration: none;
-    background: linear-gradient(135deg, var(--coral), var(--coral-deep));
-    color: #fff;
-    font-size: 18px;
-    font-weight: 700;
-    padding: 16px 24px;
-    border-radius: 999px;
-    margin: 22px auto 8px;
-    max-width: 320px;
-    box-shadow: 0 6px 20px rgba(255,111,82,0.35);
-    transition: transform 0.12s ease;
-  }
-  .cta:active { transform: scale(0.97); }
-  .cta-note {
-    text-align: center;
-    font-size: 13px;
-    color: var(--text-dim);
-    margin-bottom: 6px;
-  }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--white);
+      color: var(--gray-900);
+      line-height: 1.5;
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      padding-top: var(--safe-top);
+      padding-bottom: var(--safe-bottom);
+    }
 
-  /* ---------- SIGNATURE: notification stack ---------- */
-  .notif-stack { margin: 30px 0 6px; }
-  .notif {
-    display: flex; align-items: center; gap: 12px;
-    background: var(--card);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 20px;
-    padding: 13px 15px;
-    margin-bottom: 10px;
-    opacity: 0;
-    transform: translateY(14px);
-    animation: drop 0.5s ease forwards;
-  }
-  .notif:nth-child(2) { animation-delay: 0.35s; }
-  .notif:nth-child(3) { animation-delay: 0.7s; }
-  @keyframes drop { to { opacity: 1; transform: translateY(0); } }
-  @media (prefers-reduced-motion: reduce) {
-    .notif { animation: none; opacity: 1; transform: none; }
-  }
-  .notif-icon {
-    width: 38px; height: 38px; flex-shrink: 0;
-    border-radius: 9px;
-    background: linear-gradient(145deg, var(--coral), var(--coral-deep));
-    display: flex; align-items: center; justify-content: center;
-  }
-  .notif-icon svg { width: 20px; height: 20px; }
-  .notif-body { flex: 1; min-width: 0; }
-  .notif-top {
-    display: flex; justify-content: space-between; align-items: baseline;
-    font-size: 12px; color: var(--text-dim);
-  }
-  .notif-title { font-size: 15px; font-weight: 600; }
-  .notif-text { font-size: 14px; color: var(--text-dim); }
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 16px 16px 80px;
+    }
 
-  /* ---------- FEATURES ---------- */
-  .section-label {
-    font-size: 13px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    color: var(--text-dim);
-    margin: 30px 4px 10px;
-  }
-  .feature-card {
-    background: var(--card);
-    border-radius: 20px;
-    overflow: hidden;
-  }
-  .feature {
-    display: flex; align-items: center; gap: 14px;
-    padding: 15px 16px;
-  }
-  .feature + .feature { border-top: 0.5px solid var(--separator); }
-  .feature-emoji {
-    width: 34px; height: 34px; flex-shrink: 0;
-    border-radius: 8px;
-    background: var(--coral-soft);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 17px;
-  }
-  .feature-text b { display: block; font-size: 15.5px; font-weight: 600; }
-  .feature-text span { font-size: 13.5px; color: var(--text-dim); }
+    /* Social Proof - AT TOP like Aerie */
+    .social-proof {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      animation: fadeIn 0.4s ease-out;
+    }
 
-  /* ---------- TRUST ---------- */
-  .trust-card {
-    background: var(--card);
-    border-radius: 20px;
-    padding: 18px 16px;
-    margin-bottom: 12px;
-    display: flex; gap: 13px; align-items: flex-start;
-  }
-  .trust-icon {
-    width: 34px; height: 34px; flex-shrink: 0;
-    border-radius: 50%;
-    background: var(--coral-soft);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-  }
-  .trust-text b { display: block; font-size: 15.5px; font-weight: 600; margin-bottom: 2px; }
-  .trust-text span { font-size: 13.5px; color: var(--text-dim); line-height: 1.5; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-  /* ---------- FAQ ---------- */
-  .faq-card { background: var(--card); border-radius: 20px; overflow: hidden; }
-  .faq { padding: 15px 16px; }
-  .faq + .faq { border-top: 0.5px solid var(--separator); }
-  .faq b { display: block; font-size: 15.5px; font-weight: 600; margin-bottom: 3px; }
-  .faq span { font-size: 14px; color: var(--text-dim); }
+    .proof-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--abercrombie-light);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
 
-  /* ---------- FOOTER ---------- */
-  .footer {
-    margin-top: 34px;
-    text-align: center;
-    font-size: 12px;
-    color: rgba(245,238,235,0.35);
-    line-height: 1.6;
-  }
-</style>
+    .proof-icon svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--abercrombie-navy);
+    }
+
+    .proof-text {
+      font-size: 12px;
+      color: var(--gray-600);
+      line-height: 1.4;
+    }
+
+    .proof-text strong {
+      color: var(--gray-900);
+    }
+
+    .proof-text .highlight {
+      color: var(--abercrombie-gold);
+      font-weight: 600;
+    }
+
+    /* Brand Logo with Moose */
+    .brand-logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .logo-bubble {
+      background: var(--abercrombie-navy);
+      padding: 16px 28px;
+      border-radius: 12px 12px 12px 0;
+      text-align: center;
+    }
+
+    .moose-icon {
+      width: 50px;
+      height: 45px;
+      fill: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .logo-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .logo-subtext {
+      font-size: 11px;
+      color: rgba(255,255,255,0.8);
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 1px;
+    }
+
+    /* Headline */
+    .headline {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .headline h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gray-900);
+      letter-spacing: -0.3px;
+      margin-bottom: 8px;
+    }
+
+    .headline p {
+      font-size: 14px;
+      color: var(--gray-500);
+      line-height: 1.5;
+    }
+
+    /* How It Works */
+    .how-it-works {
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 16px;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px;
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: 12px;
+    }
+
+    .step-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--abercrombie-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--abercrombie-navy);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .step-content {
+      flex: 1;
+    }
+
+    .step-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gray-400);
+      margin-bottom: 2px;
+    }
+
+    .step-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--gray-900);
+      margin-bottom: 2px;
+    }
+
+    .step-desc {
+      font-size: 13px;
+      color: var(--gray-500);
+    }
+
+    /* CTA Button - AFTER STEP 3 like Aerie */
+    .cta-btn {
+      display: block;
+      width: 100%;
+      background: var(--abercrombie-navy);
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 24px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      transition: background 0.2s, transform 0.1s;
+      -webkit-touch-callout: none;
+      touch-action: manipulation;
+      margin-top: 20px;
+      margin-bottom: 16px;
+    }
+
+    .cta-btn:hover {
+      background: #0f1520;
+    }
+
+    .cta-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* Disclaimer */
+    .disclaimer-text {
+      font-size: 12px;
+      color: var(--gray-500);
+      line-height: 1.5;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    /* Trustpilot */
+    .trustpilot {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 2px;
+      margin-bottom: 4px;
+    }
+
+    .star {
+      width: 22px;
+      height: 22px;
+      fill: var(--abercrombie-navy);
+    }
+
+    .rating-text {
+      font-size: 13px;
+      color: var(--gray-600);
+    }
+
+    .rating-text strong {
+      color: var(--gray-900);
+    }
+
+    /* FAQ */
+    .faq {
+      margin-top: 24px;
+    }
+
+    .faq-title {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 14px;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 14px 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--gray-900);
+      gap: 12px;
+      -webkit-touch-callout: none;
+      touch-action: manipulation;
+    }
+
+    .faq-question svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--gray-400);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .faq-item.open .faq-question svg {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 0 14px;
+      font-size: 13px;
+      color: var(--gray-500);
+      line-height: 1.6;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+  </style>
 </head>
 <body>
-<div class="page">
-
-  <!-- ============ HERO ============ -->
-  <header class="hero">
-    <div class="app-badge" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="10" cy="8" r="3.4"/>
-        <path d="M3.5 20c0-3.6 2.9-6 6.5-6 1.2 0 2.3.25 3.2.7"/>
-        <path d="M16 16l5 5M21 16l-5 5"/>
-      </svg>
-    </div>
-    <p class="app-name">Lurke</p>
-    <h1>See who <span class="accent">unfollowed</span> you.</h1>
-    <p class="sub">Names. Dates. Receipts.</p>
-
-    <!-- ▼▼▼ PUT YOUR TRACKING LINK IN THE href BELOW (both CTA buttons) ▼▼▼ -->
-    <a class="cta" href="https://giftclick.org/aff_c?offer_id=4590&amp;aff_id=164706">Get the app</a>
-    <p class="cta-note">For iPhone · on the App Store</p>
-  </header>
-
-  <!-- ============ SIGNATURE: notification stack ============ -->
-  <div class="notif-stack" aria-label="Example notifications">
-    <div class="notif">
-      <div class="notif-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><circle cx="10" cy="8" r="3.2"/><path d="M4 19.5c0-3.3 2.7-5.5 6-5.5"/><path d="M15.5 15.5l5 5M20.5 15.5l-5 5"/></svg>
+  <div class="container">
+    <!-- Social Proof - AT TOP like Aerie screenshot -->
+    <div class="social-proof" id="socialProof">
+      <div class="proof-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6M12 3v12M8 7l4-4 4 4"/></svg>
       </div>
-      <div class="notif-body">
-        <div class="notif-top"><span>Unfollower detected</span><span>now</span></div>
-        <div class="notif-title">Someone stopped following you</div>
-        <div class="notif-text">Tap to see who it was</div>
+      <div class="proof-text">
+        <strong>Olivia</strong> from <strong>New York</strong> just got a <span class="highlight">$500 Abercrombie Discount Code</span>.
       </div>
     </div>
-    <div class="notif">
-      <div class="notif-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M12 8v5l3 2"/><circle cx="12" cy="12" r="9"/></svg>
-      </div>
-      <div class="notif-body">
-        <div class="notif-top"><span>Lost &amp; gained</span><span>2m ago</span></div>
-        <div class="notif-title">Your follower changes, tracked</div>
-        <div class="notif-text">Clear history with dates</div>
-      </div>
-    </div>
-    <div class="notif">
-      <div class="notif-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M16 11l2 2 4-4"/><circle cx="9" cy="8" r="3.2"/><path d="M3 19.5c0-3.3 2.7-5.5 6-5.5 1.5 0 2.9.45 3.9 1.2"/></svg>
-      </div>
-      <div class="notif-body">
-        <div class="notif-top"><span>Not following back</span><span>5m ago</span></div>
-        <div class="notif-title">See who doesn't follow you back</div>
-        <div class="notif-text">The full list, in one tap</div>
-      </div>
-    </div>
-  </div>
 
-  <!-- ============ FEATURES (from the real App Store listing) ============ -->
-  <p class="section-label">What Lurke tracks</p>
-  <div class="feature-card">
-    <div class="feature">
-      <div class="feature-emoji" aria-hidden="true">👀</div>
-      <div class="feature-text"><b>Who unfollowed you</b><span>Instagram won't tell you. Lurke will.</span></div>
+    <!-- Brand Logo with Moose -->
+    <div class="brand-logo">
+      <div class="logo-bubble">
+        <!-- Moose silhouette SVG -->
+        <svg class="moose-icon" viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+          <!-- Antlers -->
+          <path d="M25 25 Q20 15, 10 12 Q15 10, 18 5 Q20 8, 22 10 Q25 5, 30 3 Q28 8, 27 12 Q35 8, 40 5 Q38 10, 35 15 Q40 12, 45 10 Q42 15, 38 20 L35 25"/>
+          <path d="M75 25 Q80 15, 90 12 Q85 10, 82 5 Q80 8, 78 10 Q75 5, 70 3 Q72 8, 73 12 Q65 8, 60 5 Q62 10, 65 15 Q60 12, 55 10 Q58 15, 62 20 L65 25"/>
+          <!-- Head -->
+          <ellipse cx="50" cy="35" rx="18" ry="14"/>
+          <!-- Ears -->
+          <ellipse cx="30" cy="28" rx="5" ry="8" transform="rotate(-20 30 28)"/>
+          <ellipse cx="70" cy="28" rx="5" ry="8" transform="rotate(20 70 28)"/>
+          <!-- Snout -->
+          <ellipse cx="50" cy="48" rx="10" ry="7"/>
+          <!-- Neck -->
+          <path d="M35 45 Q30 55, 32 70 L68 70 Q70 55, 65 45"/>
+          <!-- Body hint -->
+          <path d="M25 70 Q20 75, 25 80 L75 80 Q80 75, 75 70"/>
+        </svg>
+        <div class="logo-text">Abercrombie</div>
+        <div class="logo-subtext">& Fitch</div>
+      </div>
     </div>
-    <div class="feature">
-      <div class="feature-emoji" aria-hidden="true">🧾</div>
-      <div class="feature-text"><b>Lost &amp; gained history</b><span>Follower changes tracked over time, with dates.</span></div>
-    </div>
-    <div class="feature">
-      <div class="feature-emoji" aria-hidden="true">↔️</div>
-      <div class="feature-text"><b>Who doesn't follow back</b><span>The full list in seconds, not hours of scrolling.</span></div>
-    </div>
-    <div class="feature">
-      <div class="feature-emoji" aria-hidden="true">👻</div>
-      <div class="feature-text"><b>Ghost followers</b><span>Spot inactive accounts sitting in your count.</span></div>
-    </div>
-  </div>
 
-  <!-- ============ TRUST (real listing facts, no invented reviews) ============ -->
-  <p class="section-label">Why people trust it</p>
-  <div class="trust-card">
-    <div class="trust-icon" aria-hidden="true">🔒</div>
-    <div class="trust-text">
-      <b>Private by design</b>
-      <span>The App Store privacy label reports: data not collected. And checking is silent — nobody gets notified.</span>
+    <!-- Headline -->
+    <div class="headline">
+      <h1>Get Up To $500 Abercrombie Discount Code</h1>
+      <p>Discover premium quality apparel, denim, and accessories made for every style.</p>
     </div>
-  </div>
-  <div class="trust-card">
-    <div class="trust-icon" aria-hidden="true">✨</div>
-    <div class="trust-text">
-      <b>No ads, no clutter</b>
-      <span>A clean, minimal dashboard — open it, see your list, done.</span>
-    </div>
-  </div>
-  <div class="trust-card">
-    <div class="trust-icon" aria-hidden="true">🛠</div>
-    <div class="trust-text">
-      <b>Actively updated</b>
-      <span>Regular releases on the App Store with speed and design improvements.</span>
-    </div>
-  </div>
 
-  <!-- ============ FAQ ============ -->
-  <p class="section-label">Quick answers</p>
-  <div class="faq-card">
+    <!-- How It Works -->
+    <div class="how-it-works">
+      <h2 class="section-title">How It Works</h2>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M13.8 12H3"/></svg>
+          </div>
+          <div class="step-content">
+            <div class="step-label">Step 1</div>
+            <div class="step-title">Click the Button Below</div>
+            <div class="step-desc">Start by clicking the claim button to begin.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <div class="step-content">
+            <div class="step-label">Step 2</div>
+            <div class="step-title">Complete 3-5 Required Offers</div>
+            <div class="step-desc">Finish the required deals to unlock your reward.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6M12 3v12M8 7l4-4 4 4"/></svg>
+          </div>
+          <div class="step-content">
+            <div class="step-label">Step 3</div>
+            <div class="step-title">Get Your Abercrombie Discount Code</div>
+            <div class="step-desc">Once completed, receive your Abercrombie discount code.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Button - AFTER STEP 3 like Aerie screenshot -->
+    <a href="https://linkthem.net/?offer_id=4663&aff_id=164706" class="cta-btn">
+      Claim Now
+    </a>
+
+    <!-- Disclaimer -->
+    <p class="disclaimer-text">To qualify for your Abercrombie discount code, complete the required deal from start to finish to unlock up to $500 savings. Once successfully completed, you'll be eligible to claim your reward.</p>
+
+    <!-- Trustpilot -->
+    <div class="trustpilot">
+      <div class="stars">
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star" style="fill: var(--gray-100);" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div class="rating-text"><strong>4.5 / 5</strong> on ★ Trustpilot</div>
+    </div>
+
+    <!-- FAQ -->
     <div class="faq">
-      <b>Does the other person find out?</b>
-      <span>No. Checking is private — nobody is notified.</span>
-    </div>
-    <div class="faq">
-      <b>What do I need?</b>
-      <span>An iPhone or iPad running iOS 15.1 or later.</span>
-    </div>
-    <div class="faq">
-      <b>How fast do I see my list?</b>
-      <span>Your dashboard fills in right after setup.</span>
+      <h2 class="faq-title">Frequently Asked Questions</h2>
+
+      <div class="faq-item open">
+        <button class="faq-question">
+          Does it only work for students?
+          <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </button>
+        <div class="faq-answer">
+          No, it's available worldwide — anyone, anywhere can claim this offer.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          How long does it take to receive my discount code?
+          <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </button>
+        <div class="faq-answer">
+          After completing the required offers, you'll receive your discount code within 24-48 hours via email.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          What kind of tasks do I need to complete?
+          <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </button>
+        <div class="faq-answer">
+          Tasks include surveys, app downloads, or signing up for partner trials. Most take just a few minutes.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Can I claim the reward multiple times?
+          <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </button>
+        <div class="faq-answer">
+          Each person can claim one discount code per household. Multiple entries may result in disqualification.
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- ============ FINAL CTA ============ -->
-  <a class="cta" href="https://giftclick.org/aff_c?offer_id=4590&amp;aff_id=164706" style="margin-top:30px;">Find out who left</a>
-  <p class="cta-note">Lurke · for iPhone</p>
+  <script>
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        button.parentElement.classList.toggle('open');
+      });
+    });
 
-  <footer class="footer">
-    <p>Lurke is an independent analytics tool by Softgenics LTD. Not affiliated with, endorsed by, or sponsored by Instagram or Meta Platforms, Inc.</p>
-    <p style="margin-top:6px;">This page contains affiliate links.</p>
-  </footer>
+    const names = ['Olivia', 'Emma', 'Sophia', 'Isabella', 'Ava', 'Mia', 'Charlotte', 'Amelia', 'Harper', 'Evelyn'];
+    const locations = ['New York', 'California', 'Texas', 'Florida', 'Illinois', 'Pennsylvania', 'Ohio', 'Georgia', 'Michigan', 'Arizona'];
 
-</div>
+    function updateSocialProof() {
+      const name = names[Math.floor(Math.random() * names.length)];
+      const location = locations[Math.floor(Math.random() * locations.length)];
+      const proofText = document.querySelector('.proof-text');
+      const socialProof = document.getElementById('socialProof');
+
+      socialProof.style.animation = 'none';
+      socialProof.offsetHeight;
+      socialProof.style.animation = 'fadeIn 0.4s ease-out';
+
+      proofText.innerHTML = `<strong>${name}</strong> from <strong>${location}</strong> just got a <span class="highlight">$500 Abercrombie Discount Code</span>.`;
+    }
+
+    setInterval(updateSocialProof, 5000);
+  </script>
 </body>
 </html>
